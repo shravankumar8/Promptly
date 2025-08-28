@@ -1,0 +1,33 @@
+{
+  "name": "email-calendar-agent-system",
+  "version": "1.0.0",
+  "description": "Email Summarizer + Calendar Follower with secure agent-to-agent communication",
+  "private": true,
+  "workspaces": [
+    "shared",
+    "frontend", 
+    "agent-a-email",
+    "agent-b-calendar"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm:dev:*\" --prefix-colors \"cyan,magenta,yellow,green\"",
+    "dev:frontend": "npm --workspace frontend run dev",
+    "dev:agent-a": "npm --workspace agent-a-email run dev", 
+    "dev:agent-b": "npm --workspace agent-b-calendar run dev",
+    "build": "npm run build --workspaces",
+    "clean": "npm run clean --workspaces",
+    "type-check": "npm run type-check --workspaces",
+    "test": "npm test --workspaces",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "typescript": "^5.4.5",
+    "@types/node": "^20.14.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
